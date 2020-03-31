@@ -26,4 +26,4 @@ def add_note():
     notes_file = open('notes.txt', 'a+', encoding="utf-8")
     notes_file.write(note + "\n")
     notes_file.close()
-    return "we got new note"
+    return render_template("success.html")
