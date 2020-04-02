@@ -6,7 +6,7 @@ app = Flask(__name__)
 def index():
     notes_file = open("notes.txt", "r", encoding="utf-8")
     notes_list = [row for row in notes_file]
-    notes_file.close
+    notes_file.close()
     return render_template('index.html', notes_list=notes_list)
 
 @app.route("/hello/<string:user_name>")
@@ -22,8 +22,8 @@ def add_note_form():
 
 @app.route("/add-note", methods=["POST"])
 def add_note():
-    note = request.form["new-note"]
+    note = request.form.get("note")
     notes_file = open('notes.txt', 'a+', encoding="utf-8")
-    notes_file.write(note + "\n")
+    notes_file.write(str(note) + "\n")
     notes_file.close()
     return render_template("success.html")
