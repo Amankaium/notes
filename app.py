@@ -23,7 +23,8 @@ def add():
 @app.route("/add-note", methods=["POST"])
 def add_note():
     note = request.form.get("note")
+    date = request.form.get("date")
     notes_file = open('notes.txt', 'a+', encoding="utf-8")
-    notes_file.write(str(note) + "\n")
+    notes_file.write(str(date) + " " + str(note) + "\n")
     notes_file.close()
     return render_template("success.html")
