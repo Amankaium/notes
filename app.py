@@ -28,3 +28,10 @@ def add_note():
     notes_file.write(str(date) + " " + str(note) + "\n")
     notes_file.close()
     return render_template("success.html")
+
+@app.route("/table")
+def table():
+    notes_file = open("notes.txt", "r", encoding="utf-8")
+    rows = [[row[:10], row[10:].strip()] for row in notes_file]
+    notes_file.close()
+    return render_template("table.html", rows=rows)
