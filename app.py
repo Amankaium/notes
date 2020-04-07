@@ -14,11 +14,9 @@ def hello(user_name):
     user_name = user_name.capitalize()
     return render_template("hello.html", user_name=user_name)
 
-
 @app.route("/add")
 def add():
     return render_template("add.html")
-
 
 @app.route("/add-note", methods=["POST"])
 def add_note():
