@@ -9,9 +9,9 @@
 {% block content %}
     <div>Сайт для заметок</div>
     <h2>Все заметки</h2>
-    <ol>
+    <ol class="list-group list-group-flush">
         {% for notes in notes_list %}
-            <li>{{ notes }}</li>
+            <li class="list-group-item">{{ notes }}</li>
         {% endfor %}
     </ol>
 
