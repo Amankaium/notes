@@ -32,6 +32,22 @@ def add_note():
 @app.route("/table")
 def table():
     notes_file = open("notes.txt", "r", encoding="utf-8")
-    rows = [[datetime.strptime(row[:10], "%Y-%d-%m"), row[10:].strip()] for row in notes_file]
+    rows = [[datetime.strptime(row[:10], "%Y-%m-%d"), row[10:].strip()] for row in notes_file]
     notes_file.close()
     return render_template("table.html", rows=rows)
+
+
+@app.route("/form-with-table", methods=["POST", "GET"])
+def form_with_table():
+    if request.method == "POST":
+        note = request.form.get("note")
+        date = request.form.get("date")
+        notes_file = open('notes.txt', 'a+', encoding="utf-8")
+        notes_file.write(str(date) + " " + str(note) + "\n")
+        notes_file.close()
+        return render_template("success.html")
+    
+    notes_file = open("notes.txt", "r", encoding="utf-8")
+    rows = [[datetime.strptime(row[:10], "%Y-%m-%d"), row[10:].strip()] for row in notes_file]
+    notes_file.close()
+    return render_template("form_with_table.html", rows=rows)
